@@ -24,7 +24,17 @@ class TestController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $enterprise = $this->getEnterprise($id_enterprise);
  
-        $entities = $em->getRepository('SLMainBundle:Test')->findByEnterprise($id_enterprise);
+
+
+        $query = $em->createQuery(
+                'SELECT t FROM SLMainBundle:Test t
+                JOIN t.enterprise e
+                WHERE e.id = :id
+                ORDER BY e.start_date ASC'
+            )
+            ->setParameter('id', $id_enterprise);
+
+        $entities = $query->getResult();
 
         $delForms = array();
         foreach ($entities as $entity)
