@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{% block body%}
+
+<header class="page-header" >
+	<h1>Welcome on the intranet Security Lab !</h1>
+	<small>Avec des morceaux de poney à l'intérieur</small>
+</header>
+<section>
+	<h2>Hello {{ app.user.getLogin }} !</h2><br>
+	<blockquote class="pull-left">
+		<p>On m'a dit que je ne pouvais pas virer quelqu'un parce qu'il était en chaise roulante.<br>
+			Rien à fiche. C'est cher, les rampes.</p>
+		<small><cite>Cave Johnson</cite></small>
+	</blockquote>
+</section>
+
+{% endblock %}

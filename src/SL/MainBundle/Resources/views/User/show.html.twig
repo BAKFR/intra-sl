@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="page-header">
+    <h1>User</h1>
+</div>
+
+<table class="record_properties table table-bordered">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Login_intra</th>
+            <td>{{ entity.loginintra }}</td>
+        </tr>
+        <tr>
+            <th>Login</th>
+            <td>{{ entity.login }}</td>
+        </tr>
+        <tr>
+            <th>Date de création</th>
+            <td>{{ entity.creationdate|date('d/m/y') }}</td>
+        </tr>
+        <tr>
+            <th>Statut</th>
+            <td>{{ entity.statut }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row" >
+    <div class="record_actions span2 offset1">
+        <a class="btn" href="{{ path('user') }}">
+            Back to the list
+        </a>
+    </div>
+        <div class="record_actions span1 offset1">
+        <a class="btn" href="{{ path('user_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </div>
+        <form class="offset1 span1 offset1" action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+    </div>{% endblock %}

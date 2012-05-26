@@ -1,0 +1,36 @@
+enterprise:
+    pattern:  /
+    defaults: { _controller: "SLMainBundle:Enterprise:index" }
+
+enterprise_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SLMainBundle:Enterprise:show" }
+
+enterprise_new:
+    pattern:  /new
+    defaults: { _controller: "SLMainBundle:Enterprise:new" }
+
+enterprise_create:
+    pattern:  /create
+    defaults: { _controller: "SLMainBundle:Enterprise:create" }
+    requirements: { _method: post }
+
+enterprise_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SLMainBundle:Enterprise:edit" }
+
+enterprise_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SLMainBundle:Enterprise:update" }
+    requirements: { _method: post }
+
+enterprise_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SLMainBundle:Enterprise:delete" }
+    requirements: { _method: post }
+
+
+SLMainBundle_enterprise_test:
+    resource: "@SLMainBundle/Resources/config/routing/test.yml"
+    prefix: /{id_enterprise}/test
+    requirements: { id_enterprise: \d+ }

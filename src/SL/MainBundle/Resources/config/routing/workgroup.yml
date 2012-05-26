@@ -1,0 +1,30 @@
+group:
+    pattern:  /
+    defaults: { _controller: "SLMainBundle:WorkGroup:index" }
+
+group_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SLMainBundle:WorkGroup:show" }
+
+group_new:
+    pattern:  /new
+    defaults: { _controller: "SLMainBundle:WorkGroup:new" }
+
+group_create:
+    pattern:  /create
+    defaults: { _controller: "SLMainBundle:WorkGroup:create" }
+    requirements: { _method: post }
+
+group_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SLMainBundle:WorkGroup:edit" }
+
+group_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SLMainBundle:WorkGroup:update" }
+    requirements: { _method: post }
+
+group_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SLMainBundle:WorkGroup:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,41 @@
+security:
+    encoders:
+        SL\MainBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity: { class: SL\MainBundle\Entity\User, property: login }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+#        login:
+#            pattern:  ^/demo/secured/login$
+#            security: false
+
+        secured_area:
+            pattern:    ^/
+            form_login: ~
+            logout: ~
+            switch_user: { role: ROLE_ADMIN, parameter: _poney }
+#            form_login:
+#                check_path: /demo/secured/login_check
+#                login_path: /demo/secured/login
+#            logout:
+#                path:   /demo/secured/logout
+#                target: /demo/
+            anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: 'ROLE_USER' }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

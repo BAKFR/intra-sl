@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="page-header">
+    <h1>Liste des membres</h1>
+</div>
+
+<table class="records_list table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login Epitech</th>
+            <th>Login</th>
+            <th>Date de création</th>
+            <th>Statut</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.loginintra }}</a></td>
+            <td>{{ entity.login }}</td>
+            <td>{{ entity.creationdate|date('d/m/y') }}</td>
+            {% set class_statut = {'admin' : 'badge-warning', 'disabled': '', 'member': 'badge-success'} %}
+            {% set name_statut = {'admin' : 'admin', 'disabled' : 'désactivé', 'member' : 'membre'} %}
+            <td><span class="badge {{ class_statut[entity.statut] }}" >{{ name_statut[entity.statut] }}</span></td>
+            <td>
+                <div class="btn-group" >
+	                <a class="btn btn-mini" href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
+	                <a class="btn btn-mini" href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="{{ path('user_new') }}">
+    Ajouter un nouvel utilisateur
+</a>
+{% endblock %}

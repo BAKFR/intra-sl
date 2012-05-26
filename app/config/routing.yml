@@ -1,0 +1,29 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: SLMainBundle:Default:index }
+
+SLMainBundle:
+    resource: "@SLMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+SLMainBundle_group:
+    resource: "@SLMainBundle/Resources/config/routing/workgroup.yml"
+    prefix: /group
+
+SLMainBundle_user:
+    resource: "@SLMainBundle/Resources/config/routing/user.yml"
+    prefix: /user
+
+SLMainBundle_enterprise:
+    resource: "@SLMainBundle/Resources/config/routing/enterprise.yml"
+    prefix: /enterprise
+
+login:
+    pattern: /login
+    defaults: { _controller: SLMainBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

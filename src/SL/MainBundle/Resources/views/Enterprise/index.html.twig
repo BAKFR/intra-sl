@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="page-header">
+    <h1>Enterprise list</h1>
+</div>
+
+<table class="records_list table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Statut</th>
+            <th>Description</th>
+            <th>Start_date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('enterprise_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.statut }}</td>
+            <td>{{ entity.description }}</td>
+            <td>{% if entity.startdate %}{{ entity.startdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>
+                <div class="btn-group" >
+                    
+	                <a class="btn btn-mini" href="{{ path('enterprise_show', { 'id': entity.id }) }}">show</a>
+                    
+	                <a class="btn btn-mini" href="{{ path('enterprise_edit', { 'id': entity.id }) }}">edit</a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="{{ path('enterprise_new') }}">
+    Create a new entry
+</a>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+        <script>
+        	$(function() {
+        		$("#{{id}}").datepicker({ dateFormat: "yy-mm-dd" });
+        	});
+        </script>
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+        <script>
+        	$(function() {
+        		$("#{{id}}").datetimepicker({ dateFormat: "yy-mm-dd", timeFormat: 'hh:mm:ss' });
+        	});
+        </script>
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form.date) }}
+            {{ form_errors(form.time) }}
+            {{ form_widget(form.date) }}
+            {{ form_widget(form.time) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <div class="alert alert-error" >
+	    <ul>
+	        {% for error in errors %}
+	            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+	        {% endfor %}
+	    </ul>
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Intranet Security Lab!</title>
+        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" ></script>
+    </head>
+    <body style="">
+        <div class="container" >
+        	<div class="hero-unit" style="margin-top: 60px;" >
+				{% if error %}
+				<div class="alert alert-error" >
+					{{ error.message }}
+				</div>
+				{% endif %}
+				<form class="well" action="{{ path('login_check') }}" method="post">
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="_username" value="{{ last_username }}" />
+					<label for="password">Password:</label>
+					<input type="password" id="password" name="_password" /><br />
+						{#
+						If you want to control the URL the user is redirected to on success (more details
+						below)
+						<input type="hidden" name="_target_path" value="/account" />
+						#}
+					<button class="btn" type="submit">login</button>
+				</form>
+			</div>
+        </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,30 @@
+enterprise_test:
+    pattern:  /
+    defaults: { _controller: "SLMainBundle:Test:index" }
+
+enterprise_test_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SLMainBundle:Test:show" }
+
+enterprise_test_new:
+    pattern:  /new
+    defaults: { _controller: "SLMainBundle:Test:new" }
+
+enterprise_test_create:
+    pattern:  /create
+    defaults: { _controller: "SLMainBundle:Test:create" }
+    requirements: { _method: post }
+
+enterprise_test_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SLMainBundle:Test:edit" }
+
+enterprise_test_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SLMainBundle:Test:update" }
+    requirements: { _method: post }
+
+enterprise_test_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SLMainBundle:Test:delete" }
+    requirements: { _method: post }
