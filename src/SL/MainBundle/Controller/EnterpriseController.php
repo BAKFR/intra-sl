@@ -48,7 +48,7 @@ class EnterpriseController extends Controller
      */
     public function showAction($id)
     {
-        $this->checkUser();
+        $this->checkUser($id);
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SLMainBundle:Enterprise')->find($id);
@@ -200,7 +200,7 @@ class EnterpriseController extends Controller
         ;
     }
 
-    public function checkUser()
+    public function checkUser($id)
     {
         if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
             return;
@@ -209,8 +209,11 @@ class EnterpriseController extends Controller
                 'SELECT e FROM SLMainBundle:Enterprise e 
                 JOIN e.groups wg
                 JOIN wg.members u
-                WHERE u.id = :id'
-            )->setParameter('id', $this->get('security.context')->getToken()->getUser()->getId());
+                WHERE u.id = :id
+                AND e.id = :id_enterprise'
+            )
+            ->setParameter('id', $this->get('security.context')->getToken()->getUser()->getId())
+            ->setParameter('id_enterprise', $id);
         if ($query->getOneOrNullResult() == null)
             throw new AccessDeniedException();
     }
