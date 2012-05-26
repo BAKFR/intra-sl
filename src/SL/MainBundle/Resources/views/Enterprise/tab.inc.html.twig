@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <li {% if(current == "enterprise") %}class="active"{% endif %}>
+    <a href="{{ path('enterprise_show', {'id': id }) }}">Entreprise</a>
+  </li>
+  <li {% if(current == "test") %}class="active"{% endif %}>
+  	<a href="{{ path('enterprise_test', {'id_enterprise': id }) }}">Tests</a>
+  </li>
+</ul>

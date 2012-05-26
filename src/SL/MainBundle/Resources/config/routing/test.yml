@@ -2,10 +2,6 @@ enterprise_test:
     pattern:  /
     defaults: { _controller: "SLMainBundle:Test:index" }
 
-enterprise_test_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "SLMainBundle:Test:show" }
-
 enterprise_test_new:
     pattern:  /new
     defaults: { _controller: "SLMainBundle:Test:new" }

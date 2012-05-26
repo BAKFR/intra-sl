@@ -23,37 +23,19 @@ class TestController extends Controller
         $this->checkUser($id_enterprise);
         $em = $this->getDoctrine()->getEntityManager();
         $enterprise = $this->getEnterprise($id_enterprise);
-
+ 
         $entities = $em->getRepository('SLMainBundle:Test')->findByEnterprise($id_enterprise);
+
+        $delForms = array();
+        foreach ($entities as $entity)
+        {
+            $delForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+        }
 
         return $this->render('SLMainBundle:Test:index.html.twig', array(
             'entities' => $entities,
-            'id_enterprise' => $id_enterprise
-        ));
-    }
-
-    /**
-     * Finds and displays a Test entity.
-     *
-     */
-    public function showAction($id, $id_enterprise)
-    {
-        $this->checkUser($id_enterprise);
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('SLMainBundle:Test')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Test entity.');
-        }
-
-        $enterprise = $this->getEnterprise($id_enterprise, $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('SLMainBundle:Test:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-            'id_enterprise' => $id_enterprise
+            'id_enterprise' => $id_enterprise,
+            'delForms' => $delForms
         ));
     }
 

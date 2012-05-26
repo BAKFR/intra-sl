@@ -22,3 +22,5 @@ CHANGELOG
    Les champs date et datetime ont maintenant un datepicker.
    - Les sauts de ligne sont pris en compte sur la page de vue des tests
    - La liste des membres d'un groupe s'affiche dans la description de celui-ci
+   - Regroupement des pages entreprises et tests, avec une meilleure lisibilité
+   

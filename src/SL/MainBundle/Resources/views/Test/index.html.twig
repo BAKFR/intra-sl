@@ -1,41 +1,56 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 <div class="page-header">
-    <h1>Test list</h1>
+    <h1>Entreprise</h1>
 </div>
+
+{% include 'SLMainBundle:Enterprise:tab.inc.html.twig' with {'id': id_enterprise, 'current': "test"} %}
+<br />
+<h2>Test list</h2>
+
 
 <table class="records_list table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Start_date</th>
-            <th>Stop_date</th>
-            <th>Title</th>
+            <th style="width: 5%">Id</th>
+            <th style="width: 15%" >Start_date</th>
+            <th style="width: 15%" >Stop_date</th>
+            <th style="width: 55%" >Title</th>
        {#     <th>Corps</th> #}
-            <th>Actions</th>
+            <th style="width: 10%" >Actions</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
+        <tr data-toggle="collapse" data-target="#tr_{{ entity.id }}" >
             <td><a href="{{ path('enterprise_test_show', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">{{ entity.id }}</a></td>
             <td>{% if entity.startdate %}{{ entity.startdate|date('Y-m-d H:i') }}{% endif %}</td>
             <td>{% if entity.stopdate %}{{ entity.stopdate|date('Y-m-d H:i') }}{% endif %}</td>
             <td>{{ entity.title }}</td>
           {#  <td>{{ entity.corps }}</td> #}
             <td>
-                <div class="btn-group" >
-                    
-	                <a class="btn btn-mini" href="{{ path('enterprise_test_show', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">show</a>
-                    
-	                <a class="btn btn-mini" href="{{ path('enterprise_test_edit', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">edit</a>
+                <div class="btn-group pull-right" >
+                    <a class="btn btn-mini" href="{{ path('enterprise_test_edit', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">edit</a>
+                    <form action="{{ path('enterprise_test_delete', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}" method="post">
+                        {{ form_widget(delForms[entity.id]) }}
+                        <button class="btn btn-danger btn-mini" type="submit">Delete</button>
+                    </form>                    
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" >
+                <div class="collapse in" id="tr_{{entity.id}}">
+                    {{ entity.corps|nl2br }}
                 </div>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
-
+<script>
+    $(".collapse").collapse();
+</script>
 <a class="btn btn-primary" href="{{ path('enterprise_test_new', {'id_enterprise': id_enterprise }) }}">
     Create a new entry
 </a>

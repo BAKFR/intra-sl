@@ -1,8 +1,9 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 <div class="page-header">
-    <h1>Enterprise</h1>
+    <h1>Entreprise</h1>
 </div>
+{% include 'SLMainBundle:Enterprise:tab.inc.html.twig' with {'id': entity.id, 'current': "enterprise"} %}
 
 <table class="record_properties table table-bordered">
     <tbody>
@@ -25,12 +26,6 @@
         <tr>
             <th>Start_date</th>
             <td>{{ entity.startdate|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th></th>
-            <td>
-                <a href="{{ path('enterprise_test', {'id_enterprise': entity.id }) }}" class="btn" >Voir les logs !</a>
-            </td>
         </tr>
     </tbody>
 </table>
