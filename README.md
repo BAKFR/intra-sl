@@ -20,3 +20,5 @@ CHANGELOG
    Listing des membres, des groupes, et des entreprises.  
    Possibilité d'ajouter des tests (logs).  
    Les champs date et datetime ont maintenant un datepicker.
+   - Les sauts de ligne sont pris en compte sur la page de vue des tests
+   - La liste des membres d'un groupe s'affiche dans la description de celui-ci

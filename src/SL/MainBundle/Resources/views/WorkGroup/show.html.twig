@@ -18,6 +18,23 @@
             <th>Description</th>
             <td>{{ entity.description }}</td>
         </tr>
+        <tr>
+            <th>Liste des membres : </th>
+            <td>
+                <ul>
+                    <li>
+                        <strong>{{ entity.leader.loginintra }}</strong>
+                    </li>
+                    {% for member in entity.members %}
+                    {% if (member != entity.leader) %}
+                    <li>
+                        {{member.loginintra}}
+                    </li>
+                    {% endif%}
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
     </tbody>
 </table>
 
