@@ -13,7 +13,7 @@ class TestType extends AbstractType
             ->add('start_date', null, array('widget' => 'single_text'))
             ->add('stop_date', null, array('widget' => 'single_text'))
             ->add('title')
-            ->add('corps')
+            ->add('corps', null, array('attr' => array('style' => 'width: 100%;', 'rows' => '10' )))
             ->add('authors')
 //            ->add('enterprise', null, array(/*'disabled' => true*/))
         ;

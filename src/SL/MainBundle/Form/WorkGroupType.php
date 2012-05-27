@@ -11,7 +11,7 @@ class WorkGroupType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', null, array('attr' => array('style' => 'width: 100%;', 'rows' => '10' )))
             ->add('leader')
             ->add('members', null, array('required' => false))
             ->add('enterprises', null, array('required' => false))
