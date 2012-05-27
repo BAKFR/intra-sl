@@ -12,19 +12,17 @@
 <table class="records_list table table-striped">
     <thead>
         <tr>
-            <th style="width: 5%">Id</th>
             <th style="width: 15%" >Start_date</th>
             <th style="width: 15%" >Stop_date</th>
             <th style="width: 50%" >Title</th>
             <th style="width: 10%" >auteur(s)</th>
        {#     <th>Corps</th> #}
-            <th style="width: 5%" >Actions</th>
+            <th style="width: 10%" >Actions</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr data-toggle="collapse" data-target="#tr_{{ entity.id }}" >
-            <td>{{ entity.id }}</td>
             <td>{% if entity.startdate %}{{ entity.startdate|date('Y-m-d H:i') }}{% endif %}</td>
             <td>{% if entity.stopdate %}{{ entity.stopdate|date('Y-m-d H:i') }}{% endif %}</td>
             <td>{{ entity.title }}</td>
@@ -38,17 +36,17 @@
                 {% endfor %}
             </td>
             <td>
-                <div class="btn-group pull-right" >
-                    <a class="btn" href="{{ path('enterprise_test_edit', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">edit</a>
+                <div class="btn-group" >
                     <form style="margin: 0px;" action="{{ path('enterprise_test_delete', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}" method="post">
                         {{ form_widget(delForms[entity.id]) }}
+                        <a class="btn" href="{{ path('enterprise_test_edit', { 'id': entity.id, 'id_enterprise': id_enterprise }) }}">éditer</a>
                         <button class="btn btn-danger btn-mini" type="submit">Delete</button>
                     </form>                    
                 </div>
             </td>
         </tr>
         <tr>
-            <td colspan="6" >
+            <td colspan="5" >
                 <div class="collapse in" id="tr_{{entity.id}}">
                     {{ entity.corps|nl2br }}
                 </div>

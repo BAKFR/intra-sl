@@ -61,3 +61,7 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+knp_markdown:
+    parser:
+        service: markdown.parser.max
