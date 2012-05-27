@@ -30,7 +30,7 @@ class TestController extends Controller
                 'SELECT t FROM SLMainBundle:Test t
                 JOIN t.enterprise e
                 WHERE e.id = :id
-                ORDER BY e.start_date ASC'
+                ORDER BY t.start_date ASC'
             )
             ->setParameter('id', $id_enterprise);
 
@@ -87,8 +87,7 @@ class TestController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('enterprise_test_show', array(
-                'id' => $entity->getId(),
+            return $this->redirect($this->generateUrl('enterprise_test', array(
                 'id_enterprise' => $id_enterprise
             )));
         }
